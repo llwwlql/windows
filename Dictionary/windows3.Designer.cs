@@ -28,34 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("宋体", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(207, 199);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 33);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "窗体3";
             // 
             // windows3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Controls.Add(this.label1);
+            this.BackColor = System.Drawing.Color.White;
             this.Name = "windows3";
             this.Size = new System.Drawing.Size(525, 481);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+
+
     }
 }

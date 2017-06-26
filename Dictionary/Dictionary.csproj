@@ -118,6 +118,9 @@
     <Content Include="Properties\img\pic.jpg" />
     <Content Include="Properties\img\search-pre.png" />
     <Content Include="Properties\img\search.png" />
+    <None Include="Resources\每日一文2.png" />
+    <None Include="Resources\每日一文1.jpg" />
+    <None Include="Resources\del.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
