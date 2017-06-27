@@ -14,10 +14,25 @@ namespace Dictionary
         public windows1 w1;
         public windows2 w2;
         public windows3 w3;
+        public Form2 form2;
+        private int userId;
+
+        public int UserId
+        {
+            get { return userId; }
+            set { userId = value; }
+        }
+
 
         public Form1()
         {
             InitializeComponent();
+        }
+
+        public long ToUnixTime(DateTime date)
+        {
+            var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            return Convert.ToInt64((date.ToUniversalTime() - epoch).TotalMilliseconds);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -25,6 +40,9 @@ namespace Dictionary
             w1 = new windows1();
             w2 = new windows2();
             w3 = new windows3();
+            this.label3.Width = 150;
+            this.userId = (int)ToUnixTime(DateTime.Now);
+            this.label3.Hide();
             this.button1_Click(sender,e);
         }
 
@@ -49,8 +67,43 @@ namespace Dictionary
         }
 
         private void label1_Click(object sender, EventArgs e)
-        {
+        {//注册
+            form2 = new Form2(this);
+            RegisterWin registerWin = form2.registerWin;
+            form2.Show();
+            registerWin.Show();
+            form2.groupBox.Controls.Clear();
+            form2.groupBox.Controls.Add(registerWin);
+        }
 
+        private void label2_Click(object sender, EventArgs e)
+        {//登录
+            form2 = new Form2(this);
+            LoginWin loginWin = form2.loginWin;
+            form2.Show();
+            loginWin.Show();
+            form2.groupBox.Controls.Clear();
+            form2.groupBox.Controls.Add(loginWin);
+        }
+
+        private void label2_MouseHover(object sender, EventArgs e)
+        {
+            this.label2.Cursor = Cursors.Hand;
+        }
+
+        private void label1_MouseHover(object sender, EventArgs e)
+        {
+            this.label1.Cursor = Cursors.Hand;
+        }
+
+        private void label2_MouseEnter(object sender, EventArgs e)
+        {
+            this.label2.Cursor = Cursors.Hand;
+        }
+
+        private void label1_MouseEnter(object sender, EventArgs e)
+        {
+            this.label1.Cursor = Cursors.Hand;
         }
     }
 }

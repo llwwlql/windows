@@ -34,6 +34,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -109,6 +110,8 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "注册";
             this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.MouseEnter += new System.EventHandler(this.label1_MouseEnter);
+            this.label1.MouseHover += new System.EventHandler(this.label1_MouseHover);
             // 
             // label2
             // 
@@ -121,6 +124,22 @@
             this.label2.Size = new System.Drawing.Size(42, 18);
             this.label2.TabIndex = 7;
             this.label2.Text = "登录";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label2.MouseEnter += new System.EventHandler(this.label2_MouseEnter);
+            this.label2.MouseHover += new System.EventHandler(this.label2_MouseHover);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("方正兰亭超细黑简体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(20, 454);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(93, 18);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "欢迎。。。";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Form1
             // 
@@ -134,6 +153,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.label3);
             this.Name = "Form1";
             this.Text = "电子词典";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -149,7 +169,27 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
+
+        public System.Windows.Forms.Label Label1
+        {
+            get { return label1; }
+            set { label1 = value; }
+        }
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+
+        public System.Windows.Forms.Label Label3
+        {
+            get { return label3; }
+            set { label3 = value; }
+        }
+
+        public System.Windows.Forms.Label Label2
+        {
+            get { return label2; }
+            set { label2 = value; }
+        }
+
 
 
     }

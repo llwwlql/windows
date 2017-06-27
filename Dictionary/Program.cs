@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Collections;
+using System.Configuration;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace Dictionary
 {

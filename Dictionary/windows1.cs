@@ -35,7 +35,6 @@ namespace Dictionary
             label1.Hide();
             label2.Hide();
             button1.Hide();
-            listBox1.SelectedItems.Clear();
         }
 
         private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
@@ -47,7 +46,7 @@ namespace Dictionary
         private void listBox1_MeasureItem(object sender, MeasureItemEventArgs e)
         {
             if (e.Index == 0)
-                e.ItemHeight = 10;
+                e.ItemHeight = 35;
         }
 
         private void richTextBox1_KeyUp(object sender, KeyEventArgs e)
@@ -58,6 +57,17 @@ namespace Dictionary
                 this.pictureBox3.Show();
                 this.pictureBox4.Hide();
             }
+            else
+            {
+                DbClass dbClass = new DbClass();
+                string english = this.richTextBox1.Text;
+                String[] result = dbClass.getLikeResultSet(english);
+                for (int i = 0; i < 5; i++)
+                {
+                    this.listBox1.Items[i] = result[i+1];
+                }
+                listBox1.SelectedItems.Clear();
+            }
         }
 
         private void listBox1_MouseClick(object sender, MouseEventArgs e)
@@ -66,18 +76,26 @@ namespace Dictionary
 
             if (selectCount > 0)
             {
-                listBox1.Hide();
-                label1.Show();
-                label1.Text = this.listBox1.SelectedItem.ToString();
-                label2.Show();
-                label2.Text = "翻译结果";
-                button1.Show();
-                this.pictureBox4.Show();
+                string english = this.listBox1.SelectedItem.ToString();
+                this.richTextBox1.Text = english;
+                this.pictureBox2_Click(sender, e);
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {//添加到单词本
+            DbClass dbClass = new DbClass();
+            string english = this.label1.Text;
+            string chinese = this.label2.Text;
+            bool judge = dbClass.getInsert(english,chinese);
+            if (judge)
+            {
+                MessageBox.Show("单词保存成功！");
+            }
+            else
+            {
+                MessageBox.Show("单词本中已存在！");
+            }
         }
 
         private void pictureBox2_MouseEnter(object sender, EventArgs e)
@@ -98,6 +116,30 @@ namespace Dictionary
         private void pictureBox2_MouseUp(object sender, MouseEventArgs e)
         {//还原图片
             pictureBox2.Image = Properties.Resources.search;
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            DbClass dbClass = new DbClass();
+            string english = this.richTextBox1.Text;
+            String[] result = dbClass.getResultSet(english);
+            this.label2.Show();
+            this.listBox1.Hide();
+            if (result[0].Equals(""))
+            {
+                this.label2.Text = "输入单词错误，没有查询结果！";
+            }else
+            {
+                this.label1.Show();
+                this.button1.Show();
+                this.label1.Text = result[0];
+                this.label2.Text = result[1];
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
