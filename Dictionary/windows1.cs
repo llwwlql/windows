@@ -11,8 +11,10 @@ namespace Dictionary
 {
     public partial class windows1 : UserControl
     {
-        public windows1()
+        public Form1 form1;
+        public windows1(Form1 form1)
         {
+            this.form1 = form1;
             InitializeComponent();
         }
 
@@ -84,12 +86,15 @@ namespace Dictionary
 
         private void button1_Click(object sender, EventArgs e)
         {//添加到单词本
+            Form1 form1 = (Form1)this.Parent.Parent;
             DbClass dbClass = new DbClass();
             string english = this.label1.Text;
             string chinese = this.label2.Text;
-            bool judge = dbClass.getInsert(english,chinese);
+            bool judge = dbClass.getInsert(english,chinese,form1.UserId);
             if (judge)
             {
+                NotePad note = new NotePad(english,chinese,form1.UserId);
+                form1.w2.addNote(note);
                 MessageBox.Show("单词保存成功！");
             }
             else

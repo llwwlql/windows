@@ -37,12 +37,13 @@ namespace Dictionary
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            w1 = new windows1();
-            w2 = new windows2();
-            w3 = new windows3();
+            w1 = new windows1(this);
+            w2 = new windows2(this);
+            w3 = new windows3(this);
             this.label3.Width = 150;
-            this.userId = (int)ToUnixTime(DateTime.Now);
+            this.userId = (int)(ToUnixTime(DateTime.Now) % 1000000000);
             this.label3.Hide();
+            this.label4.Hide();
             this.button1_Click(sender,e);
         }
 
@@ -104,6 +105,26 @@ namespace Dictionary
         private void label1_MouseEnter(object sender, EventArgs e)
         {
             this.label1.Cursor = Cursors.Hand;
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            this.userId = (int)(ToUnixTime(DateTime.Now) % 1000000000);
+            this.w2.cleanNotePad();
+            this.label1.Show();
+            this.label2.Show();
+            this.label3.Hide();
+            this.label4.Hide();
+        }
+
+        private void label4_MouseEnter(object sender, EventArgs e)
+        {
+            this.label4.Cursor = Cursors.Hand;
+        }
+
+        private void label4_MouseHover(object sender, EventArgs e)
+        {
+            this.label4.Cursor = Cursors.Hand;
         }
     }
 }

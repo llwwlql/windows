@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Dictionary
 {
-    class NotePad
+    public class NotePad
     {
         private String english;
 
@@ -22,9 +22,18 @@ namespace Dictionary
             set { chinese = value; }
         }
 
-        public NotePad(String english,String chinese){
+        public NotePad(String english,String chinese,int uuid){
             this.english = english;
             this.Chinese = chinese;
+            this.uuid = uuid;
+        }
+
+        private int uuid;
+
+        public int Uuid
+        {
+            get { return uuid; }
+            set { uuid = value; }
         }
 
     }

@@ -80,6 +80,7 @@
     <Compile Include="LoginWin.Designer.cs">
       <DependentUpon>LoginWin.cs</DependentUpon>
     </Compile>
+    <Compile Include="News.cs" />
     <Compile Include="NotePad.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -162,10 +163,13 @@
     <Content Include="Properties\img\pic.jpg" />
     <Content Include="Properties\img\search-pre.png" />
     <Content Include="Properties\img\search.png" />
+    <Content Include="Resources\newsImage\每日一文3.png" />
+    <None Include="Resources\每日一文3.png" />
     <None Include="Resources\每日一文2.png" />
     <None Include="Resources\每日一文1.jpg" />
     <None Include="Resources\del.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

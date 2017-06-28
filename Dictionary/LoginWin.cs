@@ -41,6 +41,9 @@ namespace Dictionary
                 form1.UserId = Convert.ToInt32(result[0]);
                 form1.Label3.Text = "欢迎  " + result[1];
                 form1.Label3.Show();
+                form1.Label4.Show();
+                form1.w2.cleanNotePad();
+                form1.w2.loadNotePad();
                 form2.Dispose();
             }
             else

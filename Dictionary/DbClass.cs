@@ -75,10 +75,10 @@ namespace Dictionary
             mycon.Close();
             return sqlResult;
         }
-        public bool getInsert(string english,string chinese) {
+        public bool getInsert(string english,string chinese,int uuid) {
             mycon.Open();
-            String sqlStr = "insert into notepad(english,chinese) values('"+ english +"','"+ chinese +"')";
-            String selectStr = "select 1 from notepad where english = '"+ english +"'";
+            String sqlStr = "insert into notepad(english,chinese,uuid) values('"+ english +"','"+ chinese +"'," + uuid +")";
+            String selectStr = "select 1 from notepad where english = '"+ english +"' and uuid = " + uuid;
             MySqlCommand selectCmd = new MySqlCommand(selectStr, mycon);
             MySqlDataReader reader = selectCmd.ExecuteReader();
             while (reader.Read())
@@ -96,24 +96,24 @@ namespace Dictionary
             mycon.Close();
             return true;
         }
-        public List<NotePad> getNotePad(String userId) {
+        public List<NotePad> getNotePad(int userId) {
             mycon.Open();
             List<NotePad> notePads = new List<NotePad>();
-            String sqlStr = "select * from dic where uuid = " + userId;
+            String sqlStr = "select * from notepad where uuid = " + userId +" order by english";
             MySqlCommand mycmd = new MySqlCommand(sqlStr, mycon);
             MySqlDataReader reader = mycmd.ExecuteReader();
             while (reader.Read())
             {
                 if (reader.HasRows)
                 {
-                    String english = reader.GetString(1);
-                    String chinese = reader.GetString(2);
-                    NotePad notePad = new NotePad(english,chinese);
+                    String english = reader.GetString(2);
+                    String chinese = reader.GetString(3);
+                    NotePad notePad = new NotePad(english,chinese,userId);
                     notePads.Add(notePad);
                 }
             }
             mycon.Close();
-            return null;
+            return notePads;
         }
         public string[] login(String username,String password)
         {
@@ -142,7 +142,7 @@ namespace Dictionary
         public bool register(String username,String nickname,String password)
         {
             mycon.Open();
-            String sqlStr = "insert into user(username,nickname,password,notepad_num) values('" + username + "','" + nickname + "','"+password+"',"+ 0 +")";
+            String sqlStr = "insert into user(username,nickname,password) values('" + username + "','" + nickname + "','"+password + ")";
             String selectStr = "select 1 from user where username = '" + username + "'";
             MySqlCommand selectCmd = new MySqlCommand(selectStr, mycon);
             MySqlDataReader reader = selectCmd.ExecuteReader();
@@ -180,5 +180,27 @@ namespace Dictionary
             return userId;
         }
 
+        public News getNews()
+        {
+            mycon.Open();
+            String selectStr = "select * from news order by time desc limit 1";
+            MySqlCommand selectCmd = new MySqlCommand(selectStr, mycon);
+            MySqlDataReader reader = selectCmd.ExecuteReader();
+            News news = null;
+            while (reader.Read())
+            {
+                if (reader.HasRows)
+                {
+                    string title = reader.GetString(1);
+                    string content = reader.GetString(2);
+                    string time = reader.GetString(3);
+                    string image = reader.GetString(4);
+                    news = new News(title,content,image,time);
+                    break;
+                }
+            }
+            mycon.Close();
+            return news;
+        }
     }
 }
